@@ -75,6 +75,12 @@ class NamedValueArgumentResolverTests {
 	}
 
 	@Test
+	void dateTestNotRequiredNull() {
+		this.service.executeDateNotRequired(null);
+		assertTestValue("value");
+	}
+
+	@Test
 	void objectTestValue() {
 		this.service.execute(Boolean.TRUE);
 		assertTestValue("value", "true");
@@ -183,6 +189,9 @@ class NamedValueArgumentResolverTests {
 
 		@GetExchange
 		void executeDate(@TestValue @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate value);
+
+		@GetExchange
+		void executeDateNotRequired(@Nullable @TestValue(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate value);
 
 		@GetExchange
 		void execute(@TestValue Object value);

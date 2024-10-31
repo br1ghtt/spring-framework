@@ -190,7 +190,7 @@ public abstract class AbstractNamedValueArgumentResolver implements HttpServiceA
 			value = defaultValue;
 		}
 
-		if (this.conversionService != null && !(value instanceof String)) {
+		if (value != null && this.conversionService != null && !(value instanceof String)) {
 			parameter = parameter.nestedIfOptional();
 			Class<?> type = parameter.getNestedParameterType();
 			value = (type != Object.class && !type.isArray() ?
